@@ -1,0 +1,115 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model App {
+  id                   Int         @id @default(autoincrement())
+  name                 String
+  release_date         DateTime
+  required_age         Int         @default(0)
+  background           String
+  price                Float
+  dlc_count            Int
+  detailed_description String
+  about_the_game       String
+  short_description    String
+  reviews              String
+  header_image         String
+  website              String
+  support_url          String
+  support_email        String
+  windows              Boolean
+  mac                  Boolean
+  linux                Boolean
+  recommendations      Int
+  tags                 Tag[]
+  genres               Genre[]
+  supported_languages  Language[]
+  publishers           Publisher[] @relation("App_Publisher")
+  developers           Developer[] @relation("App_Developer")
+  Specs                Spec[]
+}
+
+model Language {
+  id   Int    @id @default(autoincrement())
+  name String
+  app  App[]
+}
+
+model Publisher {
+  id   Int    @id @default(autoincrement())
+  name String
+  app  App[]  @relation("App_Publisher")
+}
+
+model Developer {
+  id   Int    @id @default(autoincrement())
+  name String
+  app  App[]  @relation("App_Developer")
+}
+
+model Tag {
+  id   Int    @id @default(autoincrement())
+  name String
+  app  App[]
+}
+
+model Genre {
+  id   Int    @id @default(autoincrement())
+  name String
+  app  App[]
+}
+
+model Spec {
+  id          Int    @id @default(autoincrement())
+  description String
+  App         App?   @relation(fields: [appId], references: [id])
+  appId       Int?
+}
+
+model Review {
+  userId         String
+  appId          Int
+  posted_time    DateTime
+  recommend      Boolean
+  review_content String
+  yes_vote       Int
+  no_vote        Int
+  funny_vote     Int
+  award_vote     Int
+
+  @@id([userId, appId])
+}
+
+model PlayedGame {
+  userId      String
+  appId       Int
+  play_time   Int
+  last_played DateTime
+
+  @@id([userId, appId])
+}
+
+model User {
+  id              String  @id @default(cuid())
+  profile_name    String
+  real_name       String?
+  custom_url      String?
+  country         String
+  avatar_url      String
+  summary         String
+  userId          String?
+  friends         User[]  @relation("UserFriends")
+  are_friend_with User[]  @relation("UserFriends")
+}
