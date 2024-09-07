@@ -6,7 +6,9 @@ function Button<T extends React.ElementType>({
     size,
     children,
     as,
+    className,
     variant = 'primary',
+    ...props
 }: ButtonProps<T> &
     Omit<React.ComponentPropsWithoutRef<T>, keyof ButtonProps<T>>) {
     const Wrapper = as || 'button'
@@ -41,7 +43,11 @@ function Button<T extends React.ElementType>({
         ],
     })
 
-    return <Wrapper className={button({ color: variant! })}>{children}</Wrapper>
+    return (
+        <Wrapper {...props} className={button({ color: variant!, className })}>
+            {children}
+        </Wrapper>
+    )
 }
 
 export default Button

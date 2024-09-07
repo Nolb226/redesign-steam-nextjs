@@ -104,6 +104,8 @@ model PlayedGame {
 model User {
   id              String  @id @default(cuid())
   profile_name    String
+  username        String
+  password        String
   real_name       String?
   custom_url      String?
   country         String

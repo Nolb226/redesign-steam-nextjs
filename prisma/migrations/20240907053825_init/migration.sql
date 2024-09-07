@@ -101,6 +101,8 @@ CREATE TABLE `PlayedGame` (
 CREATE TABLE `User` (
     `id` VARCHAR(191) NOT NULL,
     `profile_name` VARCHAR(191) NOT NULL,
+    `username` VARCHAR(191) NOT NULL,
+    `password` VARCHAR(191) NOT NULL,
     `real_name` VARCHAR(191) NULL,
     `custom_url` VARCHAR(191) NULL,
     `country` VARCHAR(191) NOT NULL,
