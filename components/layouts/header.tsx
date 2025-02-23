@@ -1,10 +1,15 @@
-import { HOME_HEADER } from '@/constants/navigation'
-import { cn } from '@/lib/utils'
-import Link, { LinkProps } from 'next/link'
+'use client'
+
 import React from 'react'
-import { Icon } from '../icons'
-import SearchBar from '../search-bar'
-import { Button } from '../ui/button'
+import Link, { LinkProps } from 'next/link'
+import { HOME_HEADER } from '@/constants/navigation'
+import { setLayoutView } from '@/redux/features/library/library.slice'
+
+import { cn } from '@/lib/utils'
+import { useRedux } from '@/hooks/use-redux'
+import { Button } from '@/components/ui/button'
+import { Icon } from '@/components/icons'
+import SearchBar from '@/components/search-bar'
 
 interface IHeaderLinkProps extends React.HTMLProps<HTMLAnchorElement> {
     active?: boolean
@@ -71,6 +76,8 @@ function StoreHeader() {
 }
 
 function LibraryHeader() {
+    const { appSelector, dispatch } = useRedux()
+    const { layoutView } = appSelector((state) => state.library)
     return (
         <HeaderWrapper className="justify-between">
             <div className="flex gap-1.75">
@@ -94,13 +101,40 @@ function LibraryHeader() {
             </div>
             <div className="flex gap-1.75 pl-2.5">
                 <span className="self-center body-medium">View</span>
-                <Button variant={'icon-box'}>
+                <Button
+                    onClick={() => {
+                        dispatch(setLayoutView('list'))
+                    }}
+                    className={cn({
+                        'bg- bg-text/dim/25 [&_svg_path]:fill-white':
+                            layoutView === 'list',
+                    })}
+                    variant={'icon-box'}
+                >
                     <Icon.listView />
                 </Button>
-                <Button variant={'icon-box'}>
+                <Button
+                    onClick={() => {
+                        dispatch(setLayoutView('grid'))
+                    }}
+                    className={cn({
+                        'bg- bg-text/dim/25 [&_svg_path]:fill-white':
+                            layoutView === 'grid',
+                    })}
+                    variant={'icon-box'}
+                >
                     <Icon.viewModule />
                 </Button>
-                <Button variant={'icon-box'}>
+                <Button
+                    onClick={() => {
+                        dispatch(setLayoutView('detail'))
+                    }}
+                    className={cn({
+                        'bg- bg-text/dim/25 [&_svg_path]:fill-white':
+                            layoutView === 'detail',
+                    })}
+                    variant={'icon-box'}
+                >
                     <Icon.detailView />
                 </Button>
             </div>
@@ -114,7 +148,9 @@ function LibraryHeader() {
     )
 }
 
-export const Header = {
-    store: StoreHeader,
-    library: LibraryHeader,
-}
+// export const Header = {
+//     store: StoreHeader,
+//     library: LibraryHeader,
+// }
+
+export { StoreHeader, LibraryHeader }

@@ -1,9 +1,9 @@
-import { Header } from '@/components/layouts/header'
+import { LibraryHeader } from '@/components/layouts/header'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <>
-            <Header.library />
+            <LibraryHeader />
             {children}
         </>
     )

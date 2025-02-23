@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
 import localFont from 'next/font/local'
+import StoreProvider from '@/redux/store-provider'
 
 const MovitvaSans = localFont({
     src: './MotivaSansRegular.ttf',
@@ -23,8 +24,10 @@ export default function RootLayout({
             <body
                 className={`${MovitvaSans.className} text-text/main antialiased`}
             >
-                {children}
-                <TailwindIndicator />
+                <StoreProvider>
+                    {children}
+                    <TailwindIndicator />
+                </StoreProvider>
             </body>
         </html>
     )
