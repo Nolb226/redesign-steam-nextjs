@@ -4,7 +4,7 @@ const config = {
     tabWidth: 4,
     semi: false,
     singleQuote: true,
-    plugins: ['prettier-plugin-tailwindcss'],
+    plugins: ['prettier-plugin-tailwindcss','@ianvs/prettier-plugin-sort-imports'],
     importOrder: [
         '^(react/(.*)$)|^(react$)',
         '^(next/(.*)$)|^(next$)',
