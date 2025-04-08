@@ -7,12 +7,12 @@ import LibraryAppCard from './library-app-card'
 function LibraryHomeGrid() {
     return (
         <ScrollArea className=" ">
-            <div className="flex  flex-col pt-[22px] gap-5">
-                <div className="flex pl-[34px] items-center">
+            <div className="flex flex-col gap-5 pt-[22px]">
+                <div className="flex items-center pl-[34px]">
                     <h2 className="heading-small">ALL GAMES (308)</h2>
                     <div className=""></div>
                 </div>
-                <div className="flex pl-[34px] pb-20 *:basis-[calc(16.666667%_-_120px)] gap-15 flex-wrap">
+                <div className="flex flex-wrap gap-15 pb-20 pl-[34px] *:basis-[calc(16.666667%_-_120px)]">
                     <LibraryAppCard />
                     <LibraryAppCard />
                     <LibraryAppCard />

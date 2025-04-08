@@ -14,6 +14,8 @@ import { Button } from '@/components/ui/button'
 import { Icon } from '@/components/icons'
 import SearchBar from '@/components/search-bar'
 
+import ActiveProductDialog from '../pages/library/active-product-dialog'
+
 interface IHeaderLinkProps extends React.HTMLProps<HTMLAnchorElement> {
     active?: boolean
 }
@@ -147,18 +149,11 @@ function LibraryHeader() {
                 </Button>
             </div>
             <div className="gap-1.751 flex">
-                <HeaderLink href="/library/genres">
-                    Activate a Product
-                </HeaderLink>
+                <ActiveProductDialog />
                 <HeaderLink href="/library">Add a non-Steam game</HeaderLink>
             </div>
         </HeaderWrapper>
     )
 }
-
-// export const Header = {
-//     store: StoreHeader,
-//     library: LibraryHeader,
-// }
 
 export { StoreHeader, LibraryHeader }
