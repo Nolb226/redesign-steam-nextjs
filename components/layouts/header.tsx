@@ -1,9 +1,12 @@
 'use client'
 
-import React from 'react'
+import React, { useRef } from 'react'
 import Link, { LinkProps } from 'next/link'
 import { HOME_HEADER } from '@/constants/navigation'
-import { setLayoutView } from '@/redux/features/library/library.slice'
+import {
+    initializeLibraryState,
+    setLayoutView,
+} from '@/redux/features/library/library.slice'
 
 import { cn } from '@/lib/utils'
 import { useRedux } from '@/hooks/use-redux'
@@ -39,7 +42,7 @@ function HeaderWrapper({
     return (
         <header
             className={cn(
-                'sticky top-[3.6875rem] z-10 flex max-h-[57px] items-center bg-background/tertiary px-2.5 py-1.5',
+                'sticky top-[3.6875rem] z-[5] flex max-h-[57px] items-center bg-background/tertiary px-2.5 py-1.5',
                 className
             )}
             {...props}
@@ -76,7 +79,12 @@ function StoreHeader() {
 }
 
 function LibraryHeader() {
-    const { appSelector, dispatch } = useRedux()
+    const { appSelector, dispatch, store } = useRedux()
+    const initialized = useRef(false)
+    if (!initialized.current) {
+        initialized.current = true
+        dispatch(store.dispatch(initializeLibraryState()))
+    }
     const { layoutView } = appSelector((state) => state.library)
     return (
         <HeaderWrapper className="justify-between">
@@ -103,11 +111,11 @@ function LibraryHeader() {
                 <span className="self-center body-medium">View</span>
                 <Button
                     onClick={() => {
-                        dispatch(setLayoutView('list'))
+                        dispatch(setLayoutView('detail'))
                     }}
                     className={cn({
                         'bg- bg-text/dim/25 [&_svg_path]:fill-white':
-                            layoutView === 'list',
+                            layoutView === 'detail',
                     })}
                     variant={'icon-box'}
                 >
@@ -127,11 +135,11 @@ function LibraryHeader() {
                 </Button>
                 <Button
                     onClick={() => {
-                        dispatch(setLayoutView('detail'))
+                        dispatch(setLayoutView('list'))
                     }}
                     className={cn({
                         'bg- bg-text/dim/25 [&_svg_path]:fill-white':
-                            layoutView === 'detail',
+                            layoutView === 'list',
                     })}
                     variant={'icon-box'}
                 >

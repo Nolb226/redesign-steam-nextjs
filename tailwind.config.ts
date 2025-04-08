@@ -37,6 +37,7 @@ export default {
                 '13.5': '3.375rem',
                 '13.75': '3.4375rem',
                 '14.75': '3.6875rem',
+                '15': '3.75rem',
                 '16.5': '4.125rem',
                 '28.25': '7.0625rem',
                 '55.25': '13.8125rem',
@@ -140,6 +141,10 @@ export default {
                 '.profile-bg': {
                     background:
                         'radial-gradient(circle at top, rgba(33,43,69,1) 3%, rgba(17,24,34,1) 73%, rgba(15,20,31,1) 87%, rgba(12,20,27,1) 100%)',
+                },
+                '.library-bg': {
+                    background:
+                        'linear-gradient(-28deg, #313843 0% , #1e2329 100% )',
                 },
                 '.heading-large': {
                     'font-size': '26px',

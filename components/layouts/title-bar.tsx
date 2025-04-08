@@ -1,3 +1,12 @@
+import React from 'react'
+import Link from 'next/link'
+import {
+    COMMUNITY_SUBMENU,
+    HOME_SUBMENU,
+    LIBRARY_SUBMENU,
+} from '@/constants/navigation'
+
+import { cn } from '@/lib/utils'
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -7,20 +16,12 @@ import {
     NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu'
 
-import Logo from '../logo'
-import React from 'react'
-import { cn } from '@/lib/utils'
-import {
-    COMMUNITY_SUBMENU,
-    HOME_SUBMENU,
-    LIBRARY_SUBMENU,
-} from '@/constants/navigation'
-import Link from 'next/link'
+import AccountDropdown from '../account-dropdown'
 import FriendsPopover from '../friends-popover'
+import { Icon } from '../icons'
+import Logo from '../logo'
 import NotificationPopover from '../notification-popover'
 import { Button } from '../ui/button'
-import { Icon } from '../icons'
-import AccountDropdown from '../account-dropdown'
 
 export default function TitleBar() {
     return (
@@ -76,8 +77,8 @@ export default function TitleBar() {
                             </NavigationMenuContent>
                         </NavigationMenuItem>
                         <NavigationMenuItem>
-                            <NavigationMenuTrigger>
-                                LIBRARY
+                            <NavigationMenuTrigger asChild>
+                                <Link href={'/library'}>LIBRARY</Link>
                             </NavigationMenuTrigger>
                             <NavigationMenuContent className="right:0 absolute left-auto top-full w-auto rounded-md bg-background/highlight text-text/main md:min-w-[190px]">
                                 {LIBRARY_SUBMENU.map(

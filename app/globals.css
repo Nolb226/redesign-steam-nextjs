@@ -6,6 +6,48 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.app-card {
+    box-shadow: 0 10px 15px 2px rgba(0, 0, 0, 0.2);
+    width: min-content;
+    transition: 0.32s;
+    overflow: hidden;
+    position: relative;
+}
+
+.app-card:hover {
+    box-shadow: 0px 10px 20px 10px rgba(0, 0, 0, 0.4) !important;
+    transform: scale(1.1) !important;
+}
+
+.app-card::before {
+    transition: inherit;
+    position: absolute;
+    top: 0;
+    right: -50%;
+    bottom: 0;
+    left: -50%;
+    content: '';
+    transform: rotate(30deg) translate(0, -80%);
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.2) 90%,
+        rgba(255, 255, 255, 0.3) 95%,
+        rgba(255, 255, 255, 0) 100%
+    );
+}
+
+.app-card:hover::before {
+    transform: rotate(30deg) translate(0, -66%);
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.2) 90%,
+        rgba(255, 255, 255, 0.35) 95%,
+        rgba(255, 255, 255, 0) 100%
+    );
+}
+
 @layer base {
     :root {
         --radius: 0.5rem;

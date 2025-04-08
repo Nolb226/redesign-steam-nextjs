@@ -5,12 +5,15 @@ interface ILibraryState {
 }
 
 const initialState: ILibraryState = {
-    layoutView: 'list',
+    layoutView: 'grid',
 }
 const librarySlice = createSlice({
-    name: 'library',
+    name: '@library',
     initialState,
     reducers: {
+        initializeLibraryState() {
+            return initialState
+        },
         setLayoutView(
             state,
             action: PayloadAction<ILibraryState['layoutView']>
@@ -20,5 +23,5 @@ const librarySlice = createSlice({
     },
 })
 
-export const { setLayoutView } = librarySlice.actions
+export const { initializeLibraryState, setLayoutView } = librarySlice.actions
 export default librarySlice.reducer

@@ -9,6 +9,6 @@ export const useRedux = () => {
     return {
         dispatch: useAppDispatch(),
         appSelector: useAppSelector,
-        store: useAppStore,
+        store: useAppStore(),
     }
 }
